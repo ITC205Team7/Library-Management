@@ -22,9 +22,9 @@ public class BorrowBookControl {
 	
 
 	public void setUI(BorrowBookUI ui) {
-		if (!state.equals(CONTROL_STATE.INITIALISED)) 
+		if (!state.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
-			
+		}
 		this.ui = ui;
 		ui.setState(BorrowBookUI.UI_STATE.READY);
 		state = CONTROL_STATE.READY;		
@@ -32,9 +32,9 @@ public class BorrowBookControl {
 
 		
 	public void Swiped(int memberId) {
-		if (!state.equals(CONTROL_STATE.READY)) 
+		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
-			
+		}
 		M = L.getMember(memberId);
 		if (M == null) {
 			ui.display("Invalid memberId");
@@ -43,11 +43,13 @@ public class BorrowBookControl {
 		if (L.memberCanBorrow(M)) {
 			PENDING = new ArrayList<>();
 			ui.setState(BorrowBookUI.UI_STATE.SCANNING);
-			state = CONTROL_STATE.SCANNING; }
-		else 
-		{
+			state = CONTROL_STATE.SCANNING;
+		}
+		else {
 			ui.display("Member cannot borrow at this time");
-			ui.setState(BorrowBookUI.UI_STATE.RESTRICTED); }}
+			ui.setState(BorrowBookUI.UI_STATE.RESTRICTED);
+		}
+	}
 	
 	
 	public void Scanned(int bookId) {
@@ -78,7 +80,7 @@ public class BorrowBookControl {
 	public void Complete() {
 		if (PENDING.size() == 0) {
 			cancel();
-		}
+		}   
 		else {
 			ui.display("\nFinal Borrowing List");
 			for (book b : PENDING) {
