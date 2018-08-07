@@ -30,8 +30,14 @@ public class BorrowBookControl {
 		state = CONTROL_STATE.READY;		
 	}
 
-		
-	public void swipe(int memberId) {
+
+	/**
+     * Display and set UI state according the status of entered memberId.
+     *
+     * @param memberId - valid member id to get member information
+     * @return void
+     */
+	public void swipeMemberCard(int memberId) {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 		}
@@ -50,9 +56,15 @@ public class BorrowBookControl {
 			ui.setState(BorrowBookUI.UI_STATE.RESTRICTED);
 		}
 	}
-	
-	
-	public void scan(int bookId) {
+
+
+    /**
+     * Display book status based on the entered book id.
+     *
+     * @param bookId - valid book id to load book information
+     * @return void
+     */
+	public void scanBook(int bookId) {
 		currentBook = null;
 		if (!state.equals(CONTROL_STATE.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
@@ -72,14 +84,19 @@ public class BorrowBookControl {
 		}
 		if (libraryObj.loansRemainingForMember(currentMember) - listPendingBooks.size() == 0) {
 			ui.display("Loan limit reached");
-			complete();
+			completeBorrowBooks();
 		}
 	}
-	
-	
-	public void complete() {
+
+
+	/**
+	 * Complete borrowing books.
+	 *
+	 * @return void
+	 */
+	public void completeBorrowBooks() {
 		if (listPendingBooks.size() == 0) {
-			cancel();
+			cancelBorrowBooks();
 		}
 		else {
 			ui.display("\nFinal Borrowing List");
@@ -93,6 +110,11 @@ public class BorrowBookControl {
 	}
 
 
+    /**
+     * Commit and display loans for current member.
+     *
+     * @return void
+     */
 	public void commitLoans() {
 		if (!state.equals(CONTROL_STATE.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
@@ -109,8 +131,13 @@ public class BorrowBookControl {
 		state = CONTROL_STATE.COMPLETED;
 	}
 
-	
-	public void cancel() {
+
+    /**
+     * Cancel change state of the borrow book ui.
+     *
+     * @return void
+     */
+	public void cancelBorrowBooks() {
 		ui.setState(BorrowBookUI.UI_STATE.CANCELLED);
 		state = CONTROL_STATE.CANCELLED;
 	}
