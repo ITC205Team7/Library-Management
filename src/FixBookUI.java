@@ -24,7 +24,7 @@ public class FixBookUI {
 
 	
 	public void run() {
-		output("Fix Book Use Case UI\n");
+		displayOutput("Fix Book Use Case UI\n");
 		
 		while (true) {
 			
@@ -41,7 +41,7 @@ public class FixBookUI {
 						fixBookControl.bookScanned(bookID);
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						displayOutput("Invalid bookId");
 					}
 				}
 				break;	
@@ -56,11 +56,11 @@ public class FixBookUI {
 				break;
 								
 			case COMPLETED:
-				output("Fixing process complete");
+				displayOutput("Fixing process complete");
 				return;
 			
 			default:
-				output("Unhandled state");
+				displayOutput("Unhandled state");
 				throw new RuntimeException("FixBookUI : unhandled state :" + state);			
 			
 			}		
@@ -75,13 +75,13 @@ public class FixBookUI {
 	}	
 		
 		
-	private void output(Object object) {
+	private void displayOutput(Object object) {
 		System.out.println(object);
 	}
 	
 
 	public void display(Object object) {
-		output(object);
+		displayOutput(object);
 	}
 	
 	
