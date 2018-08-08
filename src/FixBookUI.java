@@ -33,7 +33,7 @@ public class FixBookUI {
 			case READY:
 				String bookString = getInput("Scan Book (<enter> completes): ");
 				if (bookString.length() == 0) {
-					fixBookControl.scanningComplete();
+					fixBookControl.scanComplete();
 				}
 				else {
 					try {
