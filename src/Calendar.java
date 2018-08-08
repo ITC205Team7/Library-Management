@@ -50,11 +50,11 @@ public class Calendar {
 
 
     /**
-     * get date
+     * get current date
      *
      * @return date
      */
-	public synchronized Date Date() {
+	public synchronized Date getDate() {
 		try {
 	        calendarObj.set(java.util.Calendar.HOUR_OF_DAY, 0);
 	        calendarObj.set(java.util.Calendar.MINUTE, 0);
@@ -74,7 +74,7 @@ public class Calendar {
      * @return due date
      */
 	public synchronized Date getDueDate(int loanPeriod) {
-		Date now = Date();
+		Date now = getDate();
 		calendarObj.add(java.util.Calendar.DATE, loanPeriod);
 		Date dueDate = calendarObj.getTime();
 		calendarObj.setTime(now);
@@ -88,7 +88,7 @@ public class Calendar {
      * @return void
      */
 	public synchronized long getDaysDifference(Date targetDate) {
-		long diffMillis = Date().getTime() - targetDate.getTime();
+		long diffMillis = getDate().getTime() - targetDate.getTime();
 	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);
 	    return diffDays;
 	}
