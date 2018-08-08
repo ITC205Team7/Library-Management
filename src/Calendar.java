@@ -21,11 +21,11 @@ public class Calendar {
 
 
     /**
-     * Increase the date in calendar object by passing param days.
+     * Increase the current date of calendar object by passing param days.
      * @param days
      * @return void
      */
-	public void incrementDate(int days) {
+	public void increaseDate(int days) {
 		calendarObj.add(java.util.Calendar.DATE, days);
 	}
 
