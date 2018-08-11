@@ -45,12 +45,12 @@ public class ReturnBookUI {
 				break;				
 				
 			case INSPECTING:
-				String ans = input("Is book damaged? (Y/N): ");
-				boolean isDamaged = false;
-				if (ans.toUpperCase().equals("Y")) {					
-					isDamaged = true;
+				String answer = input("Is book spoiled? (Y/N): ");
+				boolean isSpoiled = false;
+				if (answer.toUpperCase().equals("Y")) {
+					isSpoiled = true;
 				}
-				control.dischargeLoan(isDamaged);
+				control.dischargeLoan(isSpoiled);
 			
 			case COMPLETED:
 				output("Return processing complete");
@@ -78,6 +78,7 @@ public class ReturnBookUI {
 	public void display(Object object) {
 		output(object);
 	}
+
 	
 	public void setState(UI_STATE state) {
 		this.state = state;
