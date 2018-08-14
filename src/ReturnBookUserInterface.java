@@ -46,11 +46,11 @@ public class ReturnBookUI {
 				
 			case INSPECTING:
 				String answer = input("Is book spoiled? (Y/N): ");
-				boolean isSpoiled = false;
+				boolean isDamaged = false;
 				if (answer.toUpperCase().equals("Y")) {
-					isSpoiled = true;
+					isDamaged = true;
 				}
-				control.dischargeLoan(isSpoiled);
+				control.dischargeLoan(isDamaged);
 			
 			case COMPLETED:
 				output("Return processing complete");
