@@ -35,11 +35,11 @@ public class ReturnBookUI {
 				}
 				else {
 					try {
-						int bookId = Integer.valueOf(bookString).intValue();
-						control.bookScanned(bookId);
+						int bookID = Integer.valueOf(bookString).intValue();
+						control.bookScanned(bookID);
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						output("Invalid bookID");
 					}					
 				}
 				break;				
