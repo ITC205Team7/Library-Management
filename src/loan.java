@@ -14,7 +14,7 @@ public class loan implements Serializable {
 	private LOAN_STATE state;
 
 	
-	public loan(int loanId, book book, member member, Date dueDate) {
+	public loan(int loanId, book book, Member member, Date dueDate) {
 		this.ID = loanId;
 		this.B = book;
 		this.M = member;
@@ -61,7 +61,7 @@ public class loan implements Serializable {
 	}
 
 
-	public member Member() {
+	public Member Member() {
 		return M;
 	}
 
