@@ -1,3 +1,9 @@
+# IDEA generated files #
+########################
+*.idea
+*.iml
+*.obj
+
 # Compiled source #
 ###################
 *.com

@@ -3,64 +3,64 @@ import java.util.Scanner;
 
 public class FixBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
+	public static enum UIState { INITIALISED, READY, FIXING, COMPLETED };
 
-	private FixBookControl control;
+	private FixBookControl fixBookControl;
 	private Scanner input;
-	private UI_STATE state;
+	private UIState state;
 
 	
-	public FixBookUI(FixBookControl control) {
-		this.control = control;
+	public FixBookUI(FixBookControl fixBookControl) {
+		this.fixBookControl = fixBookControl;
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
-		control.setUI(this);
+		state = UIState.INITIALISED;
+		fixBookControl.setUI(this);
 	}
 
 
-	public void setState(UI_STATE state) {
+	public void setState(UIState state) {
 		this.state = state;
 	}
 
 	
 	public void run() {
-		output("Fix Book Use Case UI\n");
+		displayOutput("Fix Book Use Case UI\n");
 		
 		while (true) {
 			
 			switch (state) {
 			
 			case READY:
-				String bookStr = input("Scan Book (<enter> completes): ");
-				if (bookStr.length() == 0) {
-					control.scanningComplete();
+				String bookString = getInput("Scan Book (<enter> completes): ");
+				if (bookString.length() == 0) {
+					fixBookControl.scanComplete();
 				}
 				else {
 					try {
-						int bookId = Integer.valueOf(bookStr).intValue();
-						control.bookScanned(bookId);
+						int bookID = Integer.valueOf(bookString).intValue();
+						fixBookControl.bookScanned(bookID);
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						displayOutput("Invalid bookId");
 					}
 				}
 				break;	
 				
 			case FIXING:
-				String ans = input("Fix Book? (Y/N) : ");
+				String userAnswer = getInput("Fix Book? (Y/N) : ");
 				boolean fix = false;
-				if (ans.toUpperCase().equals("Y")) {
+				if (userAnswer.toUpperCase().equals("Y")) {
 					fix = true;
 				}
-				control.fixBook(fix);
+				fixBookControl.fixBook(fix);
 				break;
 								
 			case COMPLETED:
-				output("Fixing process complete");
+				displayOutput("Fixing process complete");
 				return;
 			
 			default:
-				output("Unhandled state");
+				displayOutput("Unhandled state");
 				throw new RuntimeException("FixBookUI : unhandled state :" + state);			
 			
 			}		
@@ -69,19 +69,19 @@ public class FixBookUI {
 	}
 
 	
-	private String input(String prompt) {
+	private String getInput(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
 		
-	private void output(Object object) {
+	private void displayOutput(Object object) {
 		System.out.println(object);
 	}
 	
 
 	public void display(Object object) {
-		output(object);
+		displayOutput(object);
 	}
 	
 	
