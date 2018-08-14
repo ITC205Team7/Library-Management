@@ -9,7 +9,7 @@ public class Member implements Serializable {
 
 	private String lastName;
 	private String firstName;
-	private String eMail;
+	private String email;
 	private int phoneNo;
 	private int id;
 	private double fines;
@@ -20,7 +20,7 @@ public class Member implements Serializable {
 	public Member (String lastName, String firstName, String email, int phoneNo, int id) {
 		this.lastName = lastName;
 		this.firstName = firstName;
-		this.eMail = email;
+		this.email = email;
 		this.phoneNo = phoneNo;
 		this.id = id;
 		
@@ -32,7 +32,7 @@ public class Member implements Serializable {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Member:  ").append(id).append("\n")
 		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
-		  .append("  Email: ").append(eMail).append("\n")
+		  .append("  Email: ").append(email).append("\n")
 		  .append("  Phone: ").append(phoneNo)
 		  .append("\n")
 		  .append(String.format("  Fines Owed :  $%.2f", fines))
