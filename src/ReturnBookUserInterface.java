@@ -29,13 +29,13 @@ public class ReturnBookUI {
 				break;
 				
 			case READY:
-				String BookString = input("Scan Book (<enter> completes): ");
-				if (BookString.length() == 0) {
+				String bookString = input("Scan Book (<enter> completes): ");
+				if (bookString.length() == 0) {
 					control.scanningComplete();
 				}
 				else {
 					try {
-						int bookId = Integer.valueOf(BookString).intValue();
+						int bookId = Integer.valueOf(bookString).intValue();
 						control.bookScanned(bookId);
 					}
 					catch (NumberFormatException e) {
@@ -45,7 +45,7 @@ public class ReturnBookUI {
 				break;				
 				
 			case INSPECTING:
-				String answer = input("Is book spoiled? (Y/N): ");
+				String answer = input("Is book Damaged? (Y/N): ");
 				boolean isDamaged = false;
 				if (answer.toUpperCase().equals("Y")) {
 					isDamaged = true;
