@@ -80,7 +80,7 @@ public class ReturnBookUI {
 	}
 
 	
-	public void setState(UI_STATE state) {
+	public void setState(UIstate state) {
 		this.state = state;
 	}
 
