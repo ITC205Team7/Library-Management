@@ -12,7 +12,7 @@ public class Member implements Serializable {
 	private String eMail;
 	private int phoneNo;
 	private int id;
-	private double FINES;
+	private double fines;
 	
 	private Map<Integer, loan> LNS;
 
@@ -35,7 +35,7 @@ public class Member implements Serializable {
 		  .append("  Email: ").append(eMail).append("\n")
 		  .append("  Phone: ").append(phoneNo)
 		  .append("\n")
-		  .append(String.format("  Fines Owed :  $%.2f", FINES))
+		  .append(String.format("  Fines Owed :  $%.2f", fines))
 		  .append("\n");
 		
 		for (loan loan : LNS.values()) {
@@ -61,7 +61,7 @@ public class Member implements Serializable {
 
 	
 	public double getFinesOwed() {
-		return FINES;
+		return fines;
 	}
 
 	
@@ -86,7 +86,7 @@ public class Member implements Serializable {
 
 
 	public void addFine(double fine) {
-		FINES += fine;
+		fines += fine;
 	}
 	
 	public double payFine(double amount) {
@@ -94,12 +94,12 @@ public class Member implements Serializable {
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
 		double change = 0;
-		if (amount > FINES) {
-			change = amount - FINES;
-			FINES = 0;
+		if (amount > fines) {
+			change = amount - fines;
+			fines = 0;
 		}
 		else {
-			FINES -= amount;
+			fines -= amount;
 		}
 		return change;
 	}
