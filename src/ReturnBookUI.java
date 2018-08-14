@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+	public static enum UIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
 	private ReturnBookControl control;
 	private Scanner input;
-	private UI_STATE state;
+	private UIState state;
 
 	
 	public ReturnBookUI(ReturnBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
+		state = UIState.INITIALISED;
 		control.setUI(this);
 	}
 
@@ -29,25 +29,25 @@ public class ReturnBookUI {
 				break;
 				
 			case READY:
-				String bookStr = input("Scan Book (<enter> completes): ");
-				if (bookStr.length() == 0) {
+				String bookComplete = getUserInput("Scan Book (<enter> completes): ");
+				if (bookComplete.length() == 0) {
 					control.scanningComplete();
 				}
 				else {
 					try {
-						int bookId = Integer.valueOf(bookStr).intValue();
-						control.bookScanned(bookId);
+						int bookID = Integer.valueOf(bookComplete).intValue();
+						control.bookScanned(bookID);
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						output("Invalid bookID");
 					}					
 				}
 				break;				
 				
 			case INSPECTING:
-				String ans = input("Is book damaged? (Y/N): ");
+				String isBookDamaged = getUserInput("Is book damaged? (Y/N): ");
 				boolean isDamaged = false;
-				if (ans.toUpperCase().equals("Y")) {					
+				if (isBookDamaged.toUpperCase().equals("Y")) {
 					isDamaged = true;
 				}
 				control.dischargeLoan(isDamaged);
@@ -64,7 +64,7 @@ public class ReturnBookUI {
 	}
 
 	
-	private String input(String prompt) {
+	private String getUserInput(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
@@ -79,7 +79,7 @@ public class ReturnBookUI {
 		output(object);
 	}
 	
-	public void setState(UI_STATE state) {
+	public void setState(UIState state) {
 		this.state = state;
 	}
 
