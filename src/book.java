@@ -9,7 +9,7 @@ public class book implements Serializable {
 	private String C;
 	private int ID;
 	
-	private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
+	private enum State { AVAILABLE, Onloan, DAMAGED, RESERVED };
 	private State state;
 	
 	
@@ -47,8 +47,8 @@ public class book implements Serializable {
 	}
 
 	
-	public boolean On_loan() {
-		return state == State.ON_LOAN;
+	public boolean Onloan() {
+		return state == State.Onloan;
 	}
 
 	
@@ -59,7 +59,7 @@ public class book implements Serializable {
 	
 	public void Borrow() {
 		if (state.equals(State.AVAILABLE)) {
-			state = State.ON_LOAN;
+			state = State.Onloan;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state));
@@ -69,7 +69,7 @@ public class book implements Serializable {
 
 
 	public void Return(boolean DAMAGED) {
-		if (state.equals(State.ON_LOAN)) {
+		if (state.equals(State.Onloan)) {
 			if (DAMAGED) {
 				state = State.DAMAGED;
 			}
