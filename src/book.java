@@ -13,11 +13,11 @@ public class book implements Serializable {
 	private State state;
 	
 	
-	public book(String author, String title, String callNo, int id) {
+	public book(String author, String title, String callNo, int ID) {
 		this.A = author;
 		this.T = title;
 		this.C = callNo;
-		this.ID = id;
+		this.ID = ID;
 		this.state = State.AVAILABLE;
 	}
 	
