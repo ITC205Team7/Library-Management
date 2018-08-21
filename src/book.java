@@ -57,7 +57,7 @@ public class Book implements Serializable {
 	}
 
 	
-	public void Borrow() {
+	public void isBorrowed() {
 		if (state.equals(State.AVAILABLE)) {
 			state = State.Onloan;
 		}
