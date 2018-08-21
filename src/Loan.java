@@ -5,21 +5,21 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Loan implements Serializable {
 	
-	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
+	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int loanID;
+	private int loanId;
 	private book loanedBook;
-	private member loanedMember;
+	private Member loanedMember;
 	private Date loanDueDate;
-	private LoanState state;
+	private LOAN_STATE state;
 
 	
-	public Loan(int loanID, book book, member member, Date dueDate) {
-		this.loanID = loanID;
+	public Loan(int loanId, book book, Member member, Date dueDate) {
+		this.loanId = loanId;
 		this.loanedBook = book;
 		this.loanedMember = member;
 		this.loanDueDate = dueDate;
-		this.state = LoanState.CURRENT;
+		this.state = LOAN_STATE.CURRENT;
 	}
 
 
@@ -29,9 +29,9 @@ public class Loan implements Serializable {
 	 * @return void
 	 */
 	public void checkOverDue() {
-		if (state == LoanState.CURRENT &&
+		if (state == LOAN_STATE.CURRENT &&
 			Calendar.getInstance().getDate().after(loanDueDate)) {
-			this.state = LoanState.OVER_DUE;
+			this.state = LOAN_STATE.OVER_DUE;			
 		}
 	}
 
@@ -42,7 +42,7 @@ public class Loan implements Serializable {
      * @return boolean
      */
 	public boolean isOverDue() {
-		return state == LoanState.OVER_DUE;
+		return state == LOAN_STATE.OVER_DUE;
 	}
 
 
@@ -52,7 +52,7 @@ public class Loan implements Serializable {
      * @return int
      */
 	public int getId() {
-		return loanID;
+		return loanId;
 	}
 
 
@@ -75,7 +75,7 @@ public class Loan implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Loan:  ").append(loanID).append("\n")
+		sb.append("Loan:  ").append(loanId).append("\n")
 		  .append("  Borrower ").append(loanedMember.getId()).append(" : ")
 		  .append(loanedMember.getLastName()).append(", ").append(loanedMember.getFirstName()).append("\n")
 		  .append("  Book ").append(loanedBook.ID()).append(" : " )
@@ -91,7 +91,7 @@ public class Loan implements Serializable {
      *
      * @return Member
      */
-	public member getLoanedMember() {
+	public Member getLoanedMember() {
 		return loanedMember;
 	}
 
@@ -111,8 +111,8 @@ public class Loan implements Serializable {
      *
      * @return void
      */
-	public void dischargeLoan() {
-		state = LoanState.DISCHARGED;
+	public void Loan() {
+		state = LOAN_STATE.DISCHARGED;		
 	}
 
 }
