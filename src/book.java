@@ -13,7 +13,7 @@ public class Book implements Serializable {
 	private State state;
 	
 	
-	public book(String author, String title, String callNo, int ID) {
+	public Book(String author, String title, String callNo, int ID) {
 		this.A = author;
 		this.T = title;
 		this.C = callNo;
