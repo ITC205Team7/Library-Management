@@ -215,7 +215,7 @@ public class Library implements Serializable {
 		book.isReturned(isDamaged);
 		if (isDamaged) {
 			member.addFine(DAMAGE_FEE);
-			damagedBooks.put(book.bookID(), loan);
+			damagedBooks.put(book.bookID(), book);
 		}
 		currentLoan.Loan();
 		currentLoans.remove(book.bookID());
