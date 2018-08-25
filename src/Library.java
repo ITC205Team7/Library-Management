@@ -123,7 +123,7 @@ public class Library implements Serializable {
 	}
 
 
-	public Member NewMember(String lastName, String firstName, String email, int phoneNo) {
+	public Member newMember(String lastName, String firstName, String email, int phoneNo) {
 		Member member = new Member(lastName, firstName, email, phoneNo, nextMemberID());
 		members.put(member.getId(), member);		
 		return member;
