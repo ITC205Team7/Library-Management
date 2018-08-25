@@ -212,7 +212,7 @@ public class Library implements Serializable {
 		member.addFine(overDueFine);	
 		
 		member.dischargeLoan(currentLoan);
-		book.Return(isDamaged);
+		book.isReturned(isDamaged);
 		if (isDamaged) {
 			member.addFine(DAMAGE_FEE);
 			damagedBooks.put(book.ID(), book);
