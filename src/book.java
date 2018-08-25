@@ -4,9 +4,9 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 	
-	private String Title;
-	private String Author;
-	private String CallNo;
+	private String title;
+	private String author;
+	private String callNo;
 	private int ID;
 	
 	private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
@@ -14,9 +14,9 @@ public class Book implements Serializable {
 	
 	
 	public Book(String author, String title, String callNo, int bookID) {
-		this.Author = author;
-		this.Title = title;
-		this.CallNo = callNo;
+		this.author = author;
+		this.title = title;
+		this.callNo = callNo;
 		this.ID = bookID;
 		this.state = State.AVAILABLE;
 	}
@@ -24,9 +24,9 @@ public class Book implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Book: ").append(ID).append("\n")
-		  .append("  Title:  ").append(Title).append("\n")
-		  .append("  Author: ").append(Author).append("\n")
-		  .append("  CallNo: ").append(CallNo).append("\n")
+		  .append("  Title:  ").append(title).append("\n")
+		  .append("  Author: ").append(author).append("\n")
+		  .append("  CallNo: ").append(callNo).append("\n")
 		  .append("  State:  ").append(state);
 		
 		return sb.toString();
@@ -37,7 +37,7 @@ public class Book implements Serializable {
 	}
 
 	public String Title() {
-		return Title;
+		return title;
 	}
 
 
