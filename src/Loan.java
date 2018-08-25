@@ -8,13 +8,13 @@ public class Loan implements Serializable {
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
 	private int loanId;
-	private book loanedBook;
+	private Book loanedBook;
 	private Member loanedMember;
 	private Date loanDueDate;
 	private LoanState state;
 
 	
-	public Loan(int loanId, book book, Member member, Date dueDate) {
+	public Loan(int loanId, Book book, Member member, Date dueDate) {
 		this.loanId = loanId;
 		this.loanedBook = book;
 		this.loanedMember = member;
@@ -101,7 +101,7 @@ public class Loan implements Serializable {
      *
      * @return Book
      */
-	public book getLoanedBook() {
+	public Book getLoanedBook() {
 		return loanedBook;
 	}
 
