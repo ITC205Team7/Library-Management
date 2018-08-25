@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static Scanner INPUT;
-    private static Library LIBRARY;
-    private static String MENU;
-    private static Calendar CALENDAR;
-    private static SimpleDateFormat DATEFORMAT;
+    private static Scanner input;
+    private static Library library;
+    private static String menu;
+    private static Calendar calendar;
+    private static SimpleDateFormat dateFormat;
 
     /*This method will create a menu and store it in a string and
     return that menu
@@ -44,26 +44,26 @@ public class Main {
     */
     public static void main(String[] args) {
         try {
-            INPUT = new Scanner(System.in);
-            LIBRARY = Library.INSTANCE();
-            CALENDAR = Calendar.getInstance();
-            DATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
+            input = new Scanner(System.in);
+            library = Library.INSTANCE();
+            calendar = Calendar.getInstance();
+            dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-            for (Member member : LIBRARY.Members()) {
+            for (Member member : library.Members()) {
                 output(member);
             }
             output(" ");
-            for (Book book : LIBRARY.Books()) {
+            for (Book book : library.Books()) {
                 output(book);
             }
 
-            MENU = getMenu();
+            menu = getMenu();
 
             boolean check = false;
 
             while (!check) {
 
-                output("\n" + DATEFORMAT.format(CALENDAR.Date()));
+                output("\n" + dateFormat.format(calendar.Date()));
                 String c = input(MENU);
 
                 switch (c.toUpperCase()) {
@@ -133,7 +133,7 @@ public class Main {
     //list all the current loans
     private static void listCurrentLoans() {
         output("");
-        for (loan loan : LIBRARY.CurrentLoans()) {
+        for (loan loan : library.CurrentLoans()) {
             output(loan + "\n");
         }
     }
@@ -141,7 +141,7 @@ public class Main {
     //list all the books
     private static void listBooks() {
         output("");
-        for (Book book : LIBRARY.Books()) {
+        for (Book book : library.Books()) {
             output(book + "\n");
         }
     }
@@ -149,7 +149,7 @@ public class Main {
     //list all members
     private static void listMembers() {
         output("");
-        for (Member member : LIBRARY.Members()) {
+        for (Member member : library.Members()) {
             output(member + "\n");
         }
     }
@@ -173,9 +173,9 @@ public class Main {
     private static void incrementDate() {
         try {
             int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-            CALENDAR.incrementDate(days);
-            LIBRARY.checkCurrentLoans();
-            output(DATEFORMAT.format(CALENDAR.Date()));
+            calendar.incrementDate(days);
+            library.checkCurrentLoans();
+            output(dateFormat.format(calendar.Date()));
 
         } catch (NumberFormatException e) {
             output("\nInvalid number of days\n");
@@ -188,7 +188,7 @@ public class Main {
         String author = input("Enter author: ");
         String title = input("Enter title: ");
         String callNo = input("Enter call number: ");
-        Book book = LIBRARY.Add_book(author, title, callNo);
+        Book book = library.Add_book(author, title, callNo);
         output("\n" + book + "\n");
 
     }
@@ -200,7 +200,7 @@ public class Main {
             String firstName = input("Enter first name: ");
             String email = input("Enter email: ");
             int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();
-            Member member = LIBRARY.Add_mem(lastName, firstName, email, phoneNo);
+            Member member = library.Add_mem(lastName, firstName, email, phoneNo);
             output("\n" + member + "\n");
 
         } catch (NumberFormatException e) {
@@ -212,7 +212,7 @@ public class Main {
     //taking input from user
     private static String input(String prompt) {
         System.out.print(prompt);
-        return INPUT.nextLine();
+        return input.nextLine();
     }
 
     //showing output
