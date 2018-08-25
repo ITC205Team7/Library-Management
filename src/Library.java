@@ -107,7 +107,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public List<Member> Members() {
+	public List<Member> membersList() {
 		return new ArrayList<Member>(members.values());
 	}
 
