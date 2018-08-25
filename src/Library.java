@@ -32,7 +32,7 @@ public class Library implements Serializable {
 	private Map<Integer, Member> members;
 	private Map<Integer, Loan> loans;
 	private Map<Integer, Loan> currentLoans;
-	private Map<Integer, Loan> damagedBooks;
+	private Map<Integer, Book> damagedBooks;
 	
 
 	private Library() {
