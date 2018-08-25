@@ -92,7 +92,7 @@ public class Library implements Serializable {
 	}
 	
 	
-	private int nextBID() {
+	private int nextBookID() {
 		return bookId++;
 	}
 
@@ -130,7 +130,7 @@ public class Library implements Serializable {
 
 	
 	public Book Add_book(String author, String title, String callNo) {
-		Book book = new Book(author, title, callNo, nextBID());
+		Book book = new Book(author, title, callNo, nextBookID());
 		catalog.put(book.ID(), book);
 		return book;
 	}
