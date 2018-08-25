@@ -47,7 +47,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public static synchronized Library Instance() {
+	public static synchronized Library getInstance() {
 		if (self == null) {
 			Path path = Paths.get(LIBRARY_FILE);			
 			if (Files.exists(path)) {	
