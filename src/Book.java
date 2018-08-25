@@ -13,11 +13,11 @@ public class Book implements Serializable {
 	private State state;
 	
 	
-	public Book(String author, String title, String callNo, int bookID) {
+	public Book(String author, String title, String callNo, int getbookID) {
 		this.author = author;
 		this.title = title;
 		this.callNo = callNo;
-		this.ID = bookID;
+		this.ID = getbookID;
 		this.state = State.AVAILABLE;
 	}
 	
@@ -32,7 +32,7 @@ public class Book implements Serializable {
 		return sb.toString();
 	}
 
-	public Integer bookID() {
+	public Integer getbookID() {
 		return ID;
 	}
 
