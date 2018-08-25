@@ -32,11 +32,11 @@ public class Book implements Serializable {
 		return sb.toString();
 	}
 
-	public Integer bookID() {
+	public Integer getbookID() {
 		return ID;
 	}
 
-	public String Title() {
+	public String getTitle() {
 		return title;
 	}
 
@@ -47,7 +47,7 @@ public class Book implements Serializable {
 	}
 
 	
-	public boolean ON_LOAN() {
+	public boolean isOnLoan() {
 		return state == State.ON_LOAN;
 	}
 
