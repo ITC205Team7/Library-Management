@@ -47,7 +47,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public static synchronized Library INSTANCE() {
+	public static synchronized Library Instance() {
 		if (self == null) {
 			Path path = Paths.get(LIBRARY_FILE);			
 			if (Files.exists(path)) {	
@@ -112,7 +112,8 @@ public class Library implements Serializable {
 	}
 
 
-	public List<Book> Books() {
+	public List<Book> Books()
+	{
 		return new ArrayList<Book>(catalog.values());
 	}
 
