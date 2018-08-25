@@ -163,7 +163,7 @@ public class Library implements Serializable {
 			return false;
 				
 		for (Loan loan : member.getLoans())
-			if (Loan.isOverDue())
+			if (loan.isOverDue())
 				return false;
 			
 		return true;
