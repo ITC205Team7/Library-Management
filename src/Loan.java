@@ -5,7 +5,7 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Loan implements Serializable {
 	
-	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
+	public enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
 	private int loanId;
 	private Book loanedBook;
@@ -72,15 +72,15 @@ public class Loan implements Serializable {
      * @return String
      */
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(loanId).append("\n")
 		  .append("  Borrower ").append(loanedMember.getId()).append(" : ")
 		  .append(loanedMember.getLastName()).append(", ").append(loanedMember.getFirstName()).append("\n")
-		  .append("  Book ").append(loanedBook.ID()).append(" : " )
-		  .append(loanedBook.Title()).append("\n")
-		  .append("  DueDate: ").append(sdf.format(loanDueDate)).append("\n")
+		  .append("  Book ").append(loanedBook.getBookID()).append(" : " )
+		  .append(loanedBook.getTitle()).append("\n")
+		  .append("  DueDate: ").append(dateFormat.format(loanDueDate)).append("\n")
 		  .append("  State: ").append(state);		
 		return sb.toString();
 	}
