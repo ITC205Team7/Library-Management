@@ -4,26 +4,26 @@ import java.util.Scanner;
 public class PayFineUI {
 
 
-	public static enum UI_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	public static enum UIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-	private PayFineControl control;
+	private PayFineControl payFineControl;
 	private Scanner input;
-	private UI_STATE state;
+	private UIState state;
 
 	
-	public PayFineUI(PayFineControl control) {
-		this.control = control;
+	public PayFineUI(PayFineControl payFineControl) {
+		this.payFineControl = payFineControl;
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
-		control.setUI(this);
+		state = UIState.INITIALISED;
+		payFineControl.setPayFineUI(this);
 	}
 	
-	
-	public void setState(UI_STATE state) {
+	//Set state
+	public void setState(UIState state) {
 		this.state = state;
 	}
 
-
+        //It will check the state and according to state it will display the message
 	public void run() {
 		output("Pay Fine Use Case UI\n");
 		
@@ -34,12 +34,12 @@ public class PayFineUI {
 			case READY:
 				String memStr = input("Swipe member card (press <enter> to cancel): ");
 				if (memStr.length() == 0) {
-					control.cancel();
+					payFineControl.cancel();
 					break;
 				}
 				try {
 					int memberId = Integer.valueOf(memStr).intValue();
-					control.cardSwiped(memberId);
+					payFineControl.cardSwiped(memberId);
 				}
 				catch (NumberFormatException e) {
 					output("Invalid memberId");
@@ -50,7 +50,7 @@ public class PayFineUI {
 				double amount = 0;
 				String amtStr = input("Enter amount (<Enter> cancels) : ");
 				if (amtStr.length() == 0) {
-					control.cancel();
+					payFineControl.cancel();
 					break;
 				}
 				try {
@@ -61,7 +61,7 @@ public class PayFineUI {
 					output("Amount must be positive");
 					break;
 				}
-				control.payFine(amount);
+				payFineControl.payFine(amount);
 				break;
 								
 			case CANCELLED:
@@ -80,18 +80,18 @@ public class PayFineUI {
 		}		
 	}
 
-	
+	//For taking input from user
 	private String input(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
-		
+	//For showing output	
 	private void output(Object object) {
 		System.out.println(object);
 	}	
 			
-
+        //For displaying output
 	public void display(Object object) {
 		output(object);
 	}
