@@ -1,3 +1,5 @@
+package src;
+
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -45,15 +47,15 @@ public class Main {
     public static void main(String[] args) {
         try {
             input = new Scanner(System.in);
-            library = Library.INSTANCE();
+            library = Library.getInstance();
             calendar = Calendar.getInstance();
             dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-            for (Member member : library.Members()) {
+            for (Member member : library.getMembers()) {
                 output(member);
             }
             output(" ");
-            for (Book book : library.Books()) {
+            for (Book book : library.getBooks()) {
                 output(book);
             }
 
@@ -64,7 +66,7 @@ public class Main {
             while (!check) {
 
                 output("\n" + dateFormat.format(calendar.Date()));
-                String c = input(MENU);
+                String c = input(menu);
 
                 switch (c.toUpperCase()) {
 
@@ -105,7 +107,7 @@ public class Main {
                         break;
 
                     case "T":
-                        incrementDate();
+                        increaseDate();
                         break;
 
                     case "Q":
@@ -133,7 +135,7 @@ public class Main {
     //list all the current loans
     private static void listCurrentLoans() {
         output("");
-        for (loan loan : library.CurrentLoans()) {
+        for (Loan loan : library.getCurrentLoans()) {
             output(loan + "\n");
         }
     }
@@ -141,7 +143,7 @@ public class Main {
     //list all the books
     private static void listBooks() {
         output("");
-        for (Book book : library.Books()) {
+        for (Book book : library.getBooks()) {
             output(book + "\n");
         }
     }
@@ -149,7 +151,7 @@ public class Main {
     //list all members
     private static void listMembers() {
         output("");
-        for (Member member : library.Members()) {
+        for (Member member : library.getMembers()) {
             output(member + "\n");
         }
     }
@@ -170,10 +172,10 @@ public class Main {
     }
 
     //For incrementing date in days
-    private static void incrementDate() {
+    private static void increaseDate() {
         try {
             int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-            calendar.incrementDate(days);
+            calendar.increaseDate(days);
             library.checkCurrentLoans();
             output(dateFormat.format(calendar.Date()));
 
