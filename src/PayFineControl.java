@@ -1,3 +1,5 @@
+package src;
+
 public class PayFineControl {
 	
 	private PayFineUI payFineUI;
@@ -8,7 +10,7 @@ public class PayFineControl {
 
 
 	public PayFineControl() {
-		this.library = library.INSTANCE();
+		this.library = library.getInstance();
 		state = ControlState.INITIALISED;
 	}
 	
